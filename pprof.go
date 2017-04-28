@@ -7,16 +7,16 @@ import (
 	"github.com/labstack/echo"
 )
 
-// Wrap adds several routes from package `net/http/pprof` to *gin.Engine object
+// Wrap adds several routes from package `net/http/pprof` to *echo.Echo object
 func Wrap(e *echo.Echo) {
-	WrapGroup(e.Group(""))
+	WrapGroup("", e.Group(""))
 }
 
 // Wrapper make sure we are backward compatible
 var Wrapper = Wrap
 
-// WrapGroup adds several routes from package `net/http/pprof` to *gin.RouterGroup object
-func WrapGroup(g *echo.Group) {
+// WrapGroup adds several routes from package `net/http/pprof` to *echo.Group object
+func WrapGroup(prefix string, g *echo.Group) {
 	routers := []struct {
 		Method  string
 		Path    string
@@ -35,7 +35,6 @@ func WrapGroup(g *echo.Group) {
 		{"GET", "/debug/pprof/mutex", MutexHandler()},
 	}
 
-	prefix := ""
 	for _, r := range routers {
 		switch r.Method {
 		case "GET":

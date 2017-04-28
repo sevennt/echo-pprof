@@ -27,7 +27,9 @@ func checkRouters(routers []echo.Route, t *testing.T) {
 	}
 
 	for _, router := range routers {
-		//fmt.Println(router.Path, router.Method, router.Handler)
+		if (router.Method != "GET" && router.Method != "POST") || strings.HasSuffix(router.Path, "/*") {
+			continue
+		}
 		name, ok := expectedRouters[router.Path]
 		if !ok {
 			t.Errorf("missing router %s", router.Path)
@@ -38,17 +40,20 @@ func checkRouters(routers []echo.Route, t *testing.T) {
 	}
 }
 
+// go test github.com/sevenNt/echo-pprof -v -run=TestWrap\$
 func TestWrap(t *testing.T) {
 	e := newServer()
 	Wrap(e)
 	checkRouters(e.Routes(), t)
 }
 
+// go test github.com/sevenNt/echo-pprof -v -run=TestWrapGroup\$
 func TestWrapGroup(t *testing.T) {
-	for _, prefix := range []string{"/debug", "/debug/", "/debug/pprof", "/debug/pprof/"} {
+	for _, prefix := range []string{"/debug"} {
+		//for _, prefix := range []string{"/debug", "/debug/", "/debug/pprof", "/debug/pprof/"} {
 		e := newServer()
 		g := e.Group(prefix)
-		WrapGroup(g)
+		WrapGroup(prefix, g)
 		checkRouters(e.Routes(), t)
 	}
 }
