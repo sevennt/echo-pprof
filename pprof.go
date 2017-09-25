@@ -7,15 +7,15 @@ import (
 	"github.com/labstack/echo"
 )
 
-// Wrap adds several routes from package `net/http/pprof` to *echo.Echo object
+// Wrap adds several routes from package `net/http/pprof` to *echo.Echo object.
 func Wrap(e *echo.Echo) {
 	WrapGroup("", e.Group(""))
 }
 
-// Wrapper make sure we are backward compatible
+// Wrapper make sure we are backward compatible.
 var Wrapper = Wrap
 
-// WrapGroup adds several routes from package `net/http/pprof` to *echo.Group object
+// WrapGroup adds several routes from package `net/http/pprof` to *echo.Group object.
 func WrapGroup(prefix string, g *echo.Group) {
 	routers := []struct {
 		Method  string
@@ -45,7 +45,7 @@ func WrapGroup(prefix string, g *echo.Group) {
 	}
 }
 
-// IndexHandler will pass the call from /debug/pprof to pprof
+// IndexHandler will pass the call from /debug/pprof to pprof.
 func IndexHandler() echo.HandlerFunc {
 	return func(ctx echo.Context) error {
 		pprof.Index(ctx.Response().Writer, ctx.Request())
@@ -53,7 +53,7 @@ func IndexHandler() echo.HandlerFunc {
 	}
 }
 
-// HeapHandler will pass the call from /debug/pprof/heap to pprof
+// HeapHandler will pass the call from /debug/pprof/heap to pprof.
 func HeapHandler() echo.HandlerFunc {
 	return func(ctx echo.Context) error {
 		pprof.Handler("heap").ServeHTTP(ctx.Response(), ctx.Request())
@@ -61,7 +61,7 @@ func HeapHandler() echo.HandlerFunc {
 	}
 }
 
-// GoroutineHandler will pass the call from /debug/pprof/goroutine to pprof
+// GoroutineHandler will pass the call from /debug/pprof/goroutine to pprof.
 func GoroutineHandler() echo.HandlerFunc {
 	return func(ctx echo.Context) error {
 		pprof.Handler("goroutine").ServeHTTP(ctx.Response().Writer, ctx.Request())
@@ -69,7 +69,7 @@ func GoroutineHandler() echo.HandlerFunc {
 	}
 }
 
-// BlockHandler will pass the call from /debug/pprof/block to pprof
+// BlockHandler will pass the call from /debug/pprof/block to pprof.
 func BlockHandler() echo.HandlerFunc {
 	return func(ctx echo.Context) error {
 		pprof.Handler("block").ServeHTTP(ctx.Response().Writer, ctx.Request())
@@ -77,7 +77,7 @@ func BlockHandler() echo.HandlerFunc {
 	}
 }
 
-// ThreadCreateHandler will pass the call from /debug/pprof/threadcreate to pprof
+// ThreadCreateHandler will pass the call from /debug/pprof/threadcreate to pprof.
 func ThreadCreateHandler() echo.HandlerFunc {
 	return func(ctx echo.Context) error {
 		pprof.Handler("threadcreate").ServeHTTP(ctx.Response().Writer, ctx.Request())
@@ -85,7 +85,7 @@ func ThreadCreateHandler() echo.HandlerFunc {
 	}
 }
 
-// CmdlineHandler will pass the call from /debug/pprof/cmdline to pprof
+// CmdlineHandler will pass the call from /debug/pprof/cmdline to pprof.
 func CmdlineHandler() echo.HandlerFunc {
 	return func(ctx echo.Context) error {
 		pprof.Cmdline(ctx.Response().Writer, ctx.Request())
@@ -93,7 +93,7 @@ func CmdlineHandler() echo.HandlerFunc {
 	}
 }
 
-// ProfileHandler will pass the call from /debug/pprof/profile to pprof
+// ProfileHandler will pass the call from /debug/pprof/profile to pprof.
 func ProfileHandler() echo.HandlerFunc {
 	return func(ctx echo.Context) error {
 		pprof.Profile(ctx.Response().Writer, ctx.Request())
@@ -101,7 +101,7 @@ func ProfileHandler() echo.HandlerFunc {
 	}
 }
 
-// SymbolHandler will pass the call from /debug/pprof/symbol to pprof
+// SymbolHandler will pass the call from /debug/pprof/symbol to pprof.
 func SymbolHandler() echo.HandlerFunc {
 	return func(ctx echo.Context) error {
 		pprof.Symbol(ctx.Response().Writer, ctx.Request())
@@ -109,7 +109,7 @@ func SymbolHandler() echo.HandlerFunc {
 	}
 }
 
-// TraceHandler will pass the call from /debug/pprof/trace to pprof
+// TraceHandler will pass the call from /debug/pprof/trace to pprof.
 func TraceHandler() echo.HandlerFunc {
 	return func(ctx echo.Context) error {
 		pprof.Trace(ctx.Response().Writer, ctx.Request())
@@ -117,7 +117,7 @@ func TraceHandler() echo.HandlerFunc {
 	}
 }
 
-// MutexHandler will pass the call from /debug/pprof/mutex to pprof
+// MutexHandler will pass the call from /debug/pprof/mutex to pprof.
 func MutexHandler() echo.HandlerFunc {
 	return func(ctx echo.Context) error {
 		pprof.Handler("mutex").ServeHTTP(ctx.Response().Writer, ctx.Request())
