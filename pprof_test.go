@@ -4,7 +4,7 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/labstack/echo"
+	"github.com/labstack/echo/v4"
 )
 
 func newServer() *echo.Echo {
