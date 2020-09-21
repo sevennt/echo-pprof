@@ -17,7 +17,7 @@ go get github.com/sevenNt/echo-pprof
 package main
 
 import (
-	"github.com/labstack/echo"
+	"github.com/labstack/echo/v4"
 	"github.com/sevenNt/echo-pprof"
 )
 
