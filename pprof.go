@@ -1,10 +1,9 @@
 package echopprof
 
 import (
+	"github.com/labstack/echo/v4"
 	"net/http/pprof"
 	"strings"
-
-	"github.com/labstack/echo"
 )
 
 // Wrap adds several routes from package `net/http/pprof` to *echo.Echo object.
