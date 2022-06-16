@@ -9,7 +9,7 @@ import (
 
 // Wrap adds several routes from package `net/http/pprof` to *echo.Echo object.
 func Wrap(e *echo.Echo) {
-	WrapGroup("", e.Group(""))
+	WrapGroup("", e.Group("/debug/pprof"))
 }
 
 // Wrapper make sure we are backward compatible.
@@ -22,17 +22,17 @@ func WrapGroup(prefix string, g *echo.Group) {
 		Path    string
 		Handler echo.HandlerFunc
 	}{
-		{"GET", "/debug/pprof/", IndexHandler()},
-		{"GET", "/debug/pprof/heap", HeapHandler()},
-		{"GET", "/debug/pprof/goroutine", GoroutineHandler()},
-		{"GET", "/debug/pprof/block", BlockHandler()},
-		{"GET", "/debug/pprof/threadcreate", ThreadCreateHandler()},
-		{"GET", "/debug/pprof/cmdline", CmdlineHandler()},
-		{"GET", "/debug/pprof/profile", ProfileHandler()},
-		{"GET", "/debug/pprof/symbol", SymbolHandler()},
-		{"POST", "/debug/pprof/symbol", SymbolHandler()},
-		{"GET", "/debug/pprof/trace", TraceHandler()},
-		{"GET", "/debug/pprof/mutex", MutexHandler()},
+		{"GET", "/", IndexHandler()},
+		{"GET", "/heap", HeapHandler()},
+		{"GET", "/goroutine", GoroutineHandler()},
+		{"GET", "/block", BlockHandler()},
+		{"GET", "/threadcreate", ThreadCreateHandler()},
+		{"GET", "/cmdline", CmdlineHandler()},
+		{"GET", "/profile", ProfileHandler()},
+		{"GET", "/symbol", SymbolHandler()},
+		{"POST", "/symbol", SymbolHandler()},
+		{"GET", "/trace", TraceHandler()},
+		{"GET", "/mutex", MutexHandler()},
 	}
 
 	for _, r := range routers {
