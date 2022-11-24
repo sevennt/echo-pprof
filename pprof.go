@@ -1,9 +1,10 @@
 package echopprof
 
 import (
-	"github.com/labstack/echo/v4"
 	"net/http/pprof"
 	"strings"
+
+	"github.com/labstack/echo/v4"
 )
 
 // Wrap adds several routes from package `net/http/pprof` to *echo.Echo object.
@@ -21,6 +22,7 @@ func WrapGroup(prefix string, g *echo.Group) {
 		Path    string
 		Handler echo.HandlerFunc
 	}{
+		{"GET", "", IndexHandler()},
 		{"GET", "/", IndexHandler()},
 		{"GET", "/heap", HeapHandler()},
 		{"GET", "/goroutine", GoroutineHandler()},
