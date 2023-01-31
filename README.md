@@ -1,14 +1,12 @@
 echo-pprof
 ========
 
-A wrapper for [golang web framework echo](https://github.com/labstack/echo) to use `net/http/pprof` easily.
+A wrapper for [Echo web framework](https://github.com/labstack/echo) to use `net/http/pprof` easily.
 
 ## Install
 
-First install echo-pprof to your GOPATH using `go get`:
-
 ```sh
-go get github.com/sevenNt/echo-pprof
+go get -u github.com/sevenNt/echo-pprof
 ```
 
 ## Usage
@@ -41,6 +39,6 @@ func main() {
 }
 ```
 
-Start this server, and then visit [http://127.0.0.1:8080/debug/pprof/](http://127.0.0.1:8080/debug/pprof/) and you'll see what you want.
+Start this server, and then visit [http://127.0.0.1:8080/debug/pprof/](http://127.0.0.1:8080/debug/pprof/), and you'll see the pprof index page.
 
-Have Fun.
+Have fun.
