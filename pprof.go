@@ -34,6 +34,7 @@ func WrapGroup(prefix string, g *echo.Group) {
 		{"POST", "/symbol", SymbolHandler()},
 		{"GET", "/trace", TraceHandler()},
 		{"GET", "/mutex", MutexHandler()},
+		{"GET", "/allocs", AllocsHandler()},
 	}
 
 	for _, r := range routers {
@@ -122,6 +123,14 @@ func TraceHandler() echo.HandlerFunc {
 func MutexHandler() echo.HandlerFunc {
 	return func(ctx echo.Context) error {
 		pprof.Handler("mutex").ServeHTTP(ctx.Response().Writer, ctx.Request())
+		return nil
+	}
+}
+
+// AllocsHandler will pass the call from /debug/pprof/allocs to pprof.
+func AllocsHandler() echo.HandlerFunc {
+	return func(ctx echo.Context) error {
+		pprof.Handler("allocs").ServeHTTP(ctx.Response().Writer, ctx.Request())
 		return nil
 	}
 }

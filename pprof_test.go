@@ -44,6 +44,7 @@ func TestWrap(t *testing.T) {
 		"/debug/pprof/symbol":       "SymbolHandler",
 		"/debug/pprof/trace":        "TraceHandler",
 		"/debug/pprof/mutex":        "MutexHandler",
+		"/debug/pprof/allocs":       "AllocsHandler",
 	}
 
 	checkRouters(e.Routes(), t, expectedRouters)
@@ -67,6 +68,7 @@ func TestWrapGroup(t *testing.T) {
 			"/symbol":       "SymbolHandler",
 			"/trace":        "TraceHandler",
 			"/mutex":        "MutexHandler",
+			"/allocs":       "AllocsHandler",
 		}
 		expectedRouters := make(map[string]string, len(baseRouters))
 		for r, h := range baseRouters {
