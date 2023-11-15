@@ -1,4 +1,4 @@
-module github.com/sevenNt/echo-pprof
+module github.com/certifaction/echo-pprof
 
 go 1.20
 
